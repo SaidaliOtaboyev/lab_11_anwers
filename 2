@@ -1,0 +1,452 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <cctype>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
+#define val 33.3;
+#define number 50;
+using namespace std;
+/////////////////////11111111111111111111111111////////////////////
+
+const int SIZE = 4;
+double sumColumn(const double m[][SIZE], int rowSize,
+int columnIndex) {
+  double sum = 0;
+  for (int i = 0; i < rowSize; i++) {
+    sum += m[i][columnIndex];
+  }
+  return sum;
+}
+
+/////////////////222222222222222222222222222222222/////////////////
+
+
+const int SIZE2 = 4;
+
+double sumMajorDiagonal(const double m[][SIZE2]) {
+    double sum = 0.0;
+    for (int i = 0; i < SIZE2; ++i) {
+        sum += m[i][i];
+    }
+    return sum;
+}
+
+//////////////////3333333333333333333333333333333333333/////////
+ const int N = 4;
+
+void multiplyMatrix(const double a[][N], const double b[][N], double c[][N]) {
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            c[i][j] = 0;
+            for (int k = 0; k < N; ++k) {
+                c[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+}
+   /////////////////444444444444444444444444444444444/////////////
+   void search(const std::string& s, const char& key) {
+    bool found = false;
+    for (char c : s) {
+        if (c == key) {
+            found = true;
+            break;
+        }
+    }
+    if (found) {
+        std::cout << "Found" << std::endl;
+    } else {
+        std::cout << "Not found" << std::endl;
+    }
+}
+////////////////55555555555555555555555555555555//////////////
+void count(const char s[], int counts[]) {
+    int len = strlen(s);
+    for (int i = 0; i < len; ++i) {
+        if (isalpha(s[i])) {
+            int index = tolower(s[i]) - 'a';
+            counts[index]++;
+        }
+    }
+}
+////////////////999999999999999999999999999999999999///////////////
+int countAuthenticCharacters(const std::string& s) {
+    int authenticChars[26] = {0};
+    for (char c : s) {
+        if (c >= 'A' && c <= 'Z') {
+            authenticChars[c - 'A'] = 1;
+        }
+    }
+    
+    int count = 0;
+    for (int i = 0; i < 26; ++i) {
+        count += authenticChars[i];
+    }
+    
+    return count;
+}
+/////////////////10101010101010010101010101011010101010///////////
+std::vector<int> findSmallerNeighbors(const std::vector<int>& nums) {
+    std::vector<int> result;
+    
+    for (size_t i = 1; i < nums.size() - 1; ++i) {
+        if (nums[i] < nums[i - 1] && nums[i] < nums[i + 1]) {
+            result.push_back(nums[i]);
+        }
+    }
+    
+    return result;
+}
+////////////////1111111111111111111111111111111//////////////////
+
+int a = 50; // Initialize 'a' with the value 50.
+
+int& fun() {
+    return a;
+}
+
+int foo() {
+    return a;
+}
+////////////////12121212121212121212122121212112///////////////////
+
+////////////////13131313131313131313131313131313/////////////////
+int findLargestElement(const int* arr, int size) {
+    int maxElement = *arr; // Initialize maxElement with the first element of the array
+
+    for (int i = 1; i < size; ++i) {
+        if (*(arr + i) > maxElement) {
+            maxElement = *(arr + i); // Update maxElement if a larger element is found
+        }
+    }
+
+    return maxElement;
+}
+
+/////////////////141414141414141414141414141414//////////////////
+
+
+/////////////////151515151515151515151515151515//////////////////
+
+/////////////////161616161616161616161616161616//////////////////
+void factorial(int n, int *fact) {
+    *fact = 1;
+    for (int i = 1; i <= n; ++i) {
+        *fact *= i;
+    }
+}
+/////////////////1717171717171717171771171717///////////////////
+char toLower(const char s) {
+    return std::tolower(s);
+}
+
+void countChar(const char* str, int& vowelCount, int& consonantCount) {
+    vowelCount = 0;
+    consonantCount = 0;
+
+    while (*str) {
+        char currentChar = toLower(*str);
+
+        if (currentChar >= 'a' && currentChar <= 'z') {
+            if (currentChar == 'a' || currentChar == 'e' || currentChar == 'i' || currentChar == 'o' || currentChar == 'u') {
+                vowelCount++;
+            } else {
+                consonantCount++;
+            }
+        }
+
+        str++;
+    }
+}
+//////////////////1818181818181818181818181818/////////////////////
+void sortArray(int* arr, int size) {
+    for (int i = 0; i < size - 1; ++i) {
+        for (int j = i + 1; j < size; ++j) {
+            if (*(arr + i) > *(arr + j)) {
+                int temp = *(arr + i);
+                *(arr + i) = *(arr + j);
+                *(arr + j) = temp;
+            }
+        }
+    }
+}
+//////////////////1919919191911991191919191919////////////////////
+
+//////////////////////////////////////////////////////////////////
+int romanToInt(string s) {
+    unordered_map<char, int> romanMap = {
+        {'I', 1},
+        {'V', 5},
+        {'X', 10},
+        {'L', 50},
+        {'C', 100},
+        {'D', 500},
+        {'M', 1000}
+    };
+
+    int result = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (i < s.length() - 1 && romanMap[s[i]] < romanMap[s[i + 1]]) {
+            result -= romanMap[s[i]];
+        } else {
+            result += romanMap[s[i]];
+        }
+    }
+    return result;
+}
+
+////////////////////////////////////////////////////////////////
+
+std::string convertToMinimalCase(const std::string& word) {
+    std::string result = word;
+    int lowerCount = 0, upperCount = 0;
+
+    for (char c : word) {
+        if (std::islower(c)) {
+            lowerCount++;
+        } else if (std::isupper(c)) {
+            upperCount++;
+        }
+    }
+
+    if (lowerCount >= upperCount) {
+        for (char& c : result) {
+            c = std::tolower(c);
+        }
+    } else {
+        for (char& c : result) {
+            c = std::toupper(c);
+        }
+    }
+
+    return result;
+}
+
+
+
+
+int main() {
+    
+cout <<"Problem 1 :\n"<<endl;
+    int rowSize;
+    cin >> rowSize;
+    
+    double arr[rowSize][SIZE];
+    int counter = 10;
+    
+    for (int i = 0; i < rowSize; i++) {
+      for (int k = 0; k < SIZE; k++) {
+        arr[i][k] = counter;
+        counter++;
+      }
+    }
+    
+    for (int i = 0; i < rowSize; i++) {
+      for (int k = 0; k < SIZE; k++) {
+        cout << arr[i][k] << " ";
+      }
+      cout << endl;
+    }
+    
+    for (int i = 0; i < SIZE; i++) {
+      cout << "Sum of column " << i << ": " << sumColumn(arr, rowSize, i) << endl;
+    }
+    
+//     ///////////////////////////////////////////////////////////////
+    cout <<"Problem 2 :\n"<<endl;
+
+     double matrix[SIZE][SIZE] = {
+        {1.0, 2.0, 3.0, 4.0},
+        {5.0, 6.0, 7.0, 8.0},
+        {9.0, 10.0, 11.0, 12.0},
+        {13.0, 14.0, 15.0, 16.0}
+    };
+
+    std::cout << sumMajorDiagonal(matrix) << std::endl;
+
+//     ////////////////////////////////////////////////////////////
+  cout <<"Problem 3 :\n"<<endl;
+
+  
+  double M1[N][N];
+    double M2[N][N];
+    double result[N][N];
+
+    std::cout << " M1:" << std::endl;
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            std::cin >> M1[i][j];
+        }
+    }
+
+    std::cout << " M2:" << std::endl;
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            std::cin >> M2[i][j];
+        }
+    }
+
+    multiplyMatrix(M1, M2, result);
+
+    std::cout << "Result of matrix multiplication:" << std::endl;
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            std::cout << result[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+   
+//   ////////////////////////////////////////////////////////////////
+  cout <<"Problem 4 :\n"<<endl;
+
+   
+    std::string input;
+    char searchKey;
+
+    std::cout << "Enter a string: ";
+    std::cin >> input;
+
+    std::cout << "Enter a character to search for: ";
+    std::cin >> searchKey;
+
+    search(input, searchKey);
+   
+   
+  ////////////////////////////////////////////////////////////////
+    
+    
+    // std::cout <<"Problem 5 :\n"<<std::endl;
+    // std::string input;
+    // char target;
+
+    // std::cout << "Enter a string: ";
+    // std::cin >> input;
+
+    // std::cout << "Enter a character to count: ";
+    // std::cin >> target;
+
+    // int occurrences = count(input, target);
+    // std::cout << "Number of occurrences: " << occurrences << std::endl;
+//////////////////////////////////////////////////////////////////
+cout <<"Problem 6 :\n"<<endl;
+
+ const int SIZE_6 = 26;
+    int counts[SIZE_6] = {0};
+
+    char inputt[100];
+    std::cout << "Enter a string: ";
+    std::cin.getline(inputt, 100);
+
+    count(inputt, counts);
+
+    for (int i = 0; i < SIZE_6; ++i) {
+        if (counts[i] > 0) {
+            char letter = 'a' + i;
+            std::cout << letter << ":" << counts[i] << std::endl;
+        }
+    }
+
+// //////////////////////////////////////////////////////////////////
+// cout <<"Problem 7 :\n"<<endl;
+
+//  int n;
+//     std::cout << "Enter the number of grades: ";
+//     std::cin >> n;
+
+//     std::vector<int> grades(n);
+//     std::cout << "Enter the grades: ";
+//     for (int i = 0; i < n; ++i) {
+//         std::cin >> grades[i];
+//     }
+
+//     int minimum = *min_element(grades.begin(), grades.end());
+//     int maximum = *max_element(grades.begin(), grades.end());
+//     double average = 0;
+//     for (int grade : grades) {
+//         average += grade;
+//     }
+//     average /= n;
+
+//     std::cout << "Minimum=" << minimum << std::endl;
+//     std::cout << "Maximum=" << maximum << std::endl;
+//     std::cout << "Average=" << average << std::endl;
+
+
+///////////////////////////////////////////////////////////////////
+    cout <<"Problem 8 :\n"<<endl;
+    int n_8;
+    std::cout << "Enter the number of elements: ";
+    std::cin >> n_8;
+
+    std::vector<int> numberss(n_8);
+    std::cout << "Enter the numbers:\n";
+    for (int i = 0; i < n_8; ++i) {
+        std::cin >> numberss[i];
+    }
+
+    numberss.erase(std::remove_if(numberss.begin(), numberss.end(), 
+                    [](int x) { return x <= 0; }), numberss.end());
+
+    std::sort(numberss.begin(), numberss.end());
+
+    std::cout << "Sorted Elements: ";
+    for (int num : numberss) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+/////////////////////////////////////////////////////////////////
+cout <<"Problem 9 :\n"<<endl;
+std::string inputi;
+    std::cout << "Enter a string: ";
+    std::cin >> inputi;
+    
+    int count = countAuthenticCharacters(inputi);
+    std::cout << "Number of authentic characters: " << count << std::endl;
+
+/////////////////////////////////////////////////////////////////
+cout <<"Problem 10 :\n"<<endl;
+
+ std::vector<int> numbers;
+    int num;
+    
+    std::cout << "Enter numbers (separated by spaces): ";
+    while (std::cin >> num) {
+        numbers.push_back(num);
+    }
+    
+    std::vector<int> smallerNeighbors = findSmallerNeighbors(numbers);
+    
+    std::cout << "Elements smaller than their adjacent neighbors: ";
+    for (int n : smallerNeighbors) {
+        std::cout << n << " ";
+    }
+    /////////////////////////////////////////////////////////////
+    cout <<"Problem 11 :\n"<<endl;
+ int n1 = 9, n2 = 11, *ptr_1 = nullptr, *ptr_2 = nullptr, k = 0;
+    double t;
+
+    ptr_1 = &n2;
+    ptr_2 = &k; // Assign the address of 'k' to 'ptr_2'.
+
+    t = val;
+    k = val; // Assign the value of 'val' (33.3) to 'k'.
+
+    fun() = number; // Assign the value of 'number' (50) to 'a'.
+    // This line effectively changes the value of 'a' through the reference returned by 'fun()'.
+
+    cout << fun() << " " << foo() << " " << t << " " << k << endl;
+
+    ///////////////////////////////////////////////////////////////
+    cout <<"Problem 12 :\n"<<endl;
+
+int arr1[10] = {4, 7, 2, 8, 1, 9, 3, 6, 5, 0};
+    int *ptrA = arr1;
+
+    for (int i = 0; i < 10; ++i) {
+        std::cout << "Address: " << (ptrA + i) << " Value: " << *(ptrA + i) << std::endl;
+        
+    }
+    return 0;
+}
