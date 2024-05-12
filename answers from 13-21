@@ -1,1 +1,269 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <cctype>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
+#define val 33.3;
+#define number 50;
+using namespace std;
+////////////////13131313131313131313131313131313/////////////////
+int findLargestElement(const int* arr, int size) {
+    int maxElement = *arr; 
+
+    for (int i = 1; i < size; ++i) {
+        if (*(arr + i) > maxElement) {
+            maxElement = *(arr + i); 
+        }
+    }
+
+    return maxElement;
+}
+
+/////////////////141414141414141414141414141414//////////////////
+int* countDigits(const int& number14) {
+    int* counts = new int[10](); 
+    int num = number14;
+    while (num > 0) {
+        int digit = num % 10;
+        counts[digit]++;
+        num /= 10;
+    }
+
+    return counts;
+}
+
+
+/////////////////151515151515151515151515151515//////////////////
+
+int cstrLength(char* c) {
+    int length = 0;
+    while (*c != '\0') {
+        length++;
+        c++;
+    }
+    return length;
+}
+/////////////////161616161616161616161616161616//////////////////
+void factorial(int n, int *fact) {
+    *fact = 1;
+    for (int i = 1; i <= n; ++i) {
+        *fact *= i;
+    }
+}
+/////////////////1717171717171717171771171717///////////////////
+char toLower(const char s) {
+    return tolower(s);
+}
+
+void countChar(const char* str, int& vowelCount, int& consonantCount) {
+    vowelCount = 0;
+    consonantCount = 0;
+
+    while (*str) {
+        char currentChar = toLower(*str);
+
+        if (currentChar >= 'a' && currentChar <= 'z') {
+            if (currentChar == 'a' || currentChar == 'e' || currentChar == 'i' || currentChar == 'o' || currentChar == 'u') {
+                vowelCount++;
+            } else {
+                consonantCount++;
+            }
+        }
+
+        str++;
+    }
+}
+//////////////////1818181818181818181818181818/////////////////////
+void sortArray(int* arr, int size) {
+    for (int i = 0; i < size - 1; ++i) {
+        for (int j = i + 1; j < size; ++j) {
+            if (*(arr + i) > *(arr + j)) {
+                int temp = *(arr + i);
+                *(arr + i) = *(arr + j);
+                *(arr + j) = temp;
+            }
+        }
+    }
+}
+//////////////////1919919191911991191919191919////////////////////
+
+//////////////////////////////////////////////////////////////////
+int romanToInt(string s) {
+    unordered_map<char, int> romanMap = {
+        {'I', 1},
+        {'V', 5},
+        {'X', 10},
+        {'L', 50},
+        {'C', 100},
+        {'D', 500},
+        {'M', 1000}
+    };
+
+    int result = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (i < s.length() - 1 && romanMap[s[i]] < romanMap[s[i + 1]]) {
+            result -= romanMap[s[i]];
+        } else {
+            result += romanMap[s[i]];
+        }
+    }
+    return result;
+}
+
+////////////////////////////////////////////////////////////////
+
+string convertToMinimalCase(const string& word) {
+  string result = word;
+    int lowerCount = 0, upperCount = 0;
+
+    for (char c : word) {
+        if (islower(c)) {
+            lowerCount++;
+        } else if (isupper(c)) {
+            upperCount++;
+        }
+    }
+
+    if (lowerCount >= upperCount) {
+        for (char& c : result) {
+            c = tolower(c);
+        }
+    } else {
+        for (char& c : result) {
+            c = toupper(c);
+        }
+    }
+
+    return result;
+}
+
+
+
+
+int main() {
+  ///////////////////////////////////////////////////////////////
+    cout <<"Problem 13 :\n"<<endl;
+    int n13;
+    cout << "Enter the size of the array: ";
+    cin >> n13;
+
+    int* arr = new int[n13];
+    cout << "Enter the elements of the array: ";
+    for (int i = 0; i < n13; ++i) {
+        cin >> arr[i];
+    }
+
+    int largest = findLargestElement(arr, n13);
+    cout << "The largest element in the array is: " << largest << endl;
+
+    delete[] arr; 
+   
+    ///////////////////////////////////////////////////////////////
+     cout <<"Problem 14 :\n"<<endl;
+ int number14;
+    cout << "Enter an integer: ";
+    cin >> number14;
+
+    int* digitCounts = countDigits(number14);
+
+    cout << "Digit Counts:" << endl;
+    for (int i = 0; i < 10; ++i) {
+        cout << i << ": " << digitCounts[i] << endl;
+    }
+
+    delete[] digitCounts;
+     ////////////////////////////////////////////////////////////
+
+cout <<"Problem 15 :\n"<<endl;
+const int maxSize = 100;
+char str[maxSize];
+cout << "Enter a string: ";
+cin.ignore(); 
+cin.getline(str, maxSize); 
+int length = cstrLength(str);
+cout << "Length of the string: " << length << endl;
+    ///////////////////////////////////////////////////////////////
+    cout <<"Problem 16 :\n"<<endl;
+ int num, result;
+    cout << "Enter a number to calculate its factorial: ";
+    cin >> num;
+
+    factorial(num, &result);
+
+    cout << "Factorial of " << num << " is: " << result << endl;
+
+    ///////////////////////////////////////////////////////////////
+
+cout <<"Problem 17 :\n"<<endl;
+int vowels = 0, consonants = 0;
+char input[100];
+
+cout << "Enter a string: ";
+cin.ignore(); 
+cin.getline(input, 100);
+
+countChar(input, vowels, consonants);
+
+cout << "Vowels: " << vowels << endl;
+cout << "Consonants: " << consonants << endl;
+//     ///////////////////////////////////////////////////////////////
+    cout <<"Problem 18 :\n"<<endl;
+ int size;
+    cout << "Enter the size of the array: ";
+    cin >> size;
+
+    int* arr2 = new int[size];
+    cout << "Enter the elements of the array: ";
+    for (int i = 0; i < size; ++i) {
+        cin >> *(arr2 + i);
+    }
+
+    sortArray(arr2, size);
+
+    cout << "Sorted Array: ";
+    for (int i = 0; i < size; ++i) {
+        cout << *(arr2 + i) << " ";
+    }
+
+    delete[] arr2;
+    ///////////////////////////////////////////////////////////////
+    cout <<"Problem 19 :\n"<<endl;
+  int x = 0;
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+        string operation;
+        cin >> operation;
+
+        if (operation == "x++" || operation == "++x") {
+            x++;
+        } else if (operation == "x--" || operation == "--x") {
+            x--;
+        }
+    }
+
+    cout << x << endl;
+    ///////////////////////////////////////////////////////////////
+    cout <<"Problem 20 :\n"<<endl;
+ 
+string romanNumeral;
+    cout << "Enter a Roman numeral: ";
+    cin >> romanNumeral;
+    cout << "Integer value: " << romanToInt(romanNumeral) << endl;
+
+
+    cout <<"Problem 21 :\n"<<endl;
+
+ string inputt;
+    cout << "Enter a word: ";
+    cin >> inputt;
+
+    string output = convertToMinimalCase(inputt);
+    cout << "Output: " << output << endl;
+
+return 0;
+}
 
