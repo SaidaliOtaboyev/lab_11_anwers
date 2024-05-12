@@ -1,1 +1,341 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <cctype>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
 
+using namespace std;
+/////////////////////11111111111111111111111111////////////////////
+
+const int SIZE = 4;
+
+double sumColumn(const double m[][SIZE], int rowSize, int columnIndex) {
+    double sum = 0;
+    for (int i = 0; i < rowSize; i++) {
+        sum += m[i][columnIndex];
+    }
+    return sum;
+}
+
+/////////////////222222222222222222222222222222222/////////////////
+
+
+const int SIZE2 = 4;
+
+double sumMajorDiagonal(const double m[][SIZE2]) {
+    double sum = 0.0;
+    for (int i = 0; i < SIZE2; i++) {
+        sum += m[i][i];
+    }
+    return sum;
+}
+
+
+//////////////////3333333333333333333333333333333333333/////////
+ const int N = 4;
+
+void multiplyMatrix(const double a[][N], const double b[][N], double c[][N]) {
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            c[i][j] = 0;
+            for (int k = 0; k < N; ++k) {
+                c[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+}
+   /////////////////444444444444444444444444444444444/////////////
+   void search(const std::string& s, const char& key) {
+    bool found = false;
+    for (char c : s) {
+        if (c == key) {
+            found = true;
+            break;
+        }
+    }
+    if (found) {
+       cout << "Found" << endl;
+    } else {
+       cout << "Not found" << endl;
+    }
+}
+////////////////55555555555555555555555555555555//////////////
+int count(const std::string& s, char a) {
+    int count = 0;
+    for (char c : s) {
+        if (c == a) {
+            count++;
+        }
+    }
+    return count;
+}
+////////////////6666666666666666666666666666666666/////////////
+
+
+void count(const char s[], int counts[]) {
+    int len = strlen(s);
+    for (int i = 0; i < len; ++i) {
+        if (isalpha(s[i])) {
+            int index = tolower(s[i]) - 'a';
+            counts[index]++;
+        }
+    }
+}
+
+////////////////999999999999999999999999999999999999///////////////
+int countAuthenticCharacters(const string& s) {
+    int authenticChars[26] = {0};
+    for (char c : s) {
+        if (c >= 'A' && c <= 'Z') {
+            authenticChars[c - 'A'] = 1;
+        }
+    }
+    
+    int count = 0;
+    for (int i = 0; i < 26; ++i) {
+        count += authenticChars[i];
+    }
+    
+    return count;
+}
+/////////////////10101010101010010101010101011010101010///////////
+vector<int> findSmallerNeighbors(const vector<int>& nums) {
+   vector<int> result;
+    
+    for (size_t i = 1; i < nums.size() - 1; ++i) {
+        if (nums[i] < nums[i - 1] && nums[i] < nums[i + 1]) {
+            result.push_back(nums[i]);
+        }
+    }
+    
+    return result;
+}
+////////////////1111111111111111111111111111111//////////////////
+#define val 33.3
+#define number 50
+int a;
+int& fun(){
+    return a;
+}
+int foo(){
+    return a;
+}
+////////////////12121212121212121212122121212112///////////////////
+
+int main() {
+    
+cout <<"Problem 1 :\n"<<endl;
+  int rows;
+    cout << "Enter the number of rows: ";
+    cin >> rows;
+
+    double matrix1[rows][SIZE];
+    cout << "Enter the matrix elements row by row:\n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            cin >> matrix1[i][j];
+        }
+    }
+
+    for (int i = 0; i < SIZE; i++) {
+        cout << "Sum of column " << i << " = " << sumColumn(matrix1, rows, i) << endl;
+    }
+
+    ///////////////////////////////////////////////////////////////
+    cout <<"Problem 2 :\n"<<endl;
+ double matrix[SIZE][SIZE];
+
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+           cin >> matrix[i][j];
+        }
+    }
+
+   cout << "Sum of the major diagonal: " << sumMajorDiagonal(matrix) << endl;
+
+
+//     ////////////////////////////////////////////////////////////
+  cout <<"Problem 3 :\n"<<endl;
+
+  
+  double M1[N][N];
+    double M2[N][N];
+    double result[N][N];
+
+ cout << " M1:" << std::endl;
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+          cin >> M1[i][j];
+        }
+    }
+
+  cout << " M2:" << endl;
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+           cin >> M2[i][j];
+        }
+    }
+
+    multiplyMatrix(M1, M2, result);
+
+   cout << "Result of matrix multiplication:" <<endl;
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+          cout << result[i][j] << " ";
+        }
+       cout <<endl;
+    }
+   
+//   ////////////////////////////////////////////////////////////////
+  cout <<"Problem 4 :\n"<<endl;
+
+   
+   string input;
+    char searchKey;
+
+  cout << "Enter a string: ";
+   cin >> input;
+
+   cout << "Enter a character to search for: ";
+    cin >> searchKey;
+
+    search(input, searchKey);
+   
+   
+  ////////////////////////////////////////////////////////////////
+    cout <<"Problem 5 :\n"<<endl;
+string input5;
+    char character;
+
+    cout << "Enter a character to count: ";
+   cin >> character;
+
+ cout << "Enter a string: ";
+  cin.ignore(); // Ignore the newline character from previous input
+    getline(cin, input5);
+
+    int occurrences = count(input5, character);
+    cout << "Number of occurrences: " << occurrences << endl;
+
+   
+   
+//////////////////////////////////////////////////////////////////
+cout <<"Problem 6 :\n"<<endl;
+ const int SIZE_6 = 26;
+    int counts[SIZE_6] = {0};
+
+    char input6[100];
+    std::cout << "Enter a string: ";
+    std::cin.getline(input6, 100);
+
+    count(input6, counts);
+
+    for (int i = 0; i < SIZE_6; ++i) {
+        if (counts[i] > 0) {
+            char letter = 'a' + i;
+            std::cout << letter << ":" << counts[i] << std::endl;
+        }
+    }
+
+
+//////////////////////////////////////////////////////////////////
+cout <<"Problem 7 :\n"<<endl;
+
+ int n;
+    cout << "Enter the number of grades: ";
+   cin >> n;
+
+  vector<int> grades(n);
+   cout << "Enter the grades: ";
+    for (int i = 0; i < n; ++i) {
+    cin >> grades[i];
+    }
+
+    int minimum = *min_element(grades.begin(), grades.end());
+    int maximum = *max_element(grades.begin(), grades.end());
+    double average = 0;
+    for (int grade : grades) {
+        average += grade;
+    }
+    average /= n;
+
+    cout << "Minimum=" << minimum << endl;
+   cout << "Maximum=" << maximum << endl;
+   cout << "Average=" << average << endl;
+
+
+///////////////////////////////////////////////////////////////////
+    cout <<"Problem 8 :\n"<<endl;
+    int n_8;
+   cout << "Enter the number of elements: ";
+    cin >> n_8;
+
+    vector<int> numberss(n_8);
+   cout << "Enter the numbers:\n";
+    for (int i = 0; i < n_8; ++i) {
+       cin >> numberss[i];
+    }
+
+    numberss.erase(remove_if(numberss.begin(), numberss.end(), 
+                    [](int x) { return x <= 0; }), numberss.end());
+
+   sort(numberss.begin(), numberss.end());
+
+    cout << "Sorted Elements: ";
+    for (int num : numberss) {
+       cout << num << " ";
+    }
+    cout << endl;
+/////////////////////////////////////////////////////////////////
+cout <<"Problem 9 :\n"<<endl;
+string inputi;
+   cout << "Enter a string: ";
+   cin >> inputi;
+    
+    int count = countAuthenticCharacters(inputi);
+    cout << "Number of authentic characters: " << count << endl;
+
+/////////////////////////////////////////////////////////////////
+cout <<"Problem 10 :\n"<<endl;
+
+ vector<int> numbers;
+    int num;
+    
+    cout << "Enter numbers (separated by spaces): ";
+    while (cin >> num) {
+        numbers.push_back(num);
+    }
+    
+    vector<int> smallerNeighbors = findSmallerNeighbors(numbers);
+    
+   cout << "Elements smaller than their adjacent neighbors: ";
+    for (int n : smallerNeighbors) {
+       cout << n << " ";
+    }
+    /////////////////////////////////////////////////////////////
+    cout <<"Problem 11 :\n"<<endl;
+int n1=9, n2=11, *ptr_1=nullptr, *ptr_2=nullptr, k=0;
+    double t;
+   // *ptr_1=&n1;
+    ptr_1=&n2;
+  //  *ptr_2=&n2;
+    ptr_2=&n1;
+    t=val;
+    k=val;
+  //  foo()=number;
+    fun()=number;
+    cout<<n1<<" "<<n2<<" "<<t<<" "<<k<<endl;
+    ///////////////////////////////////////////////////////////////
+    cout <<"Problem 12 :\n"<<endl;
+
+int arr1[10] = {4, 7, 2, 8, 1, 9, 3, 6, 5, 0};
+    int *ptrA = arr1;
+
+    for (int i = 0; i < 10; ++i) {
+       cout << "Address: " << (ptrA + i) << " Value: " << *(ptrA + i) <<endl;
+        
+    }
+    return 0;
+}
