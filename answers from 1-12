@@ -319,14 +319,14 @@ cout <<"Problem 10 :\n"<<endl;
 int n1=9, n2=11, *ptr_1=nullptr, *ptr_2=nullptr, k=0;
     double t;
    // *ptr_1=&n1;
-    ptr_1=&n2;
+    //ptr_1=&n2;
   //  *ptr_2=&n2;
-    ptr_2=&n1;
+  //  ptr_2=&n1;
     t=val;
-    k=val;
+   // k=val;
   //  foo()=number;
     fun()=number;
-    cout<<n1<<" "<<n2<<" "<<t<<" "<<k<<endl;
+    cout<<a<<" "<<++n2<<" "<<--t<<" "<<--n1<<endl;
     ///////////////////////////////////////////////////////////////
     cout <<"Problem 12 :\n"<<endl;
 
